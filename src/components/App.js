@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
 import '../styles/App.css';
+import Search from './Search';
 
 import ListExercises from './ListExercises';
 
@@ -15,6 +16,7 @@ class App extends Component {
         <p className="App-intro">
           App works
         </p>
+        <Search />
         <ListExercises />
       </div>
     );

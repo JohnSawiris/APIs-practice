@@ -13,10 +13,6 @@ import rootReducer from './reducers/index';
 
 const store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
 
-store.subscribe(() => {
-  console.log(store.getState())
-})
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

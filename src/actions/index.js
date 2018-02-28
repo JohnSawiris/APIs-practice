@@ -10,25 +10,25 @@ export const receiveData = (name, category, description, id) => ({
 })
 
 export const requestData = (id) => ({
-  type: types.REQUEST_DATA,
-  id
-})
+  type: types.REQUEST_DATA
+});
 
-export function fetchExercises() {
+export function fetchExercises(input) {
   return function (dispatch) {
-    return fetch('https://wger.de/api/v2/exerciseinfo/?language=2&status=2').then(
+    dispatch(requestData());
+    return fetch('https://wger.de/api/v2/exerciseinfo/?language=2&status=2&limit=200').then(
       response => response.json(),
       err => console.log('error', err)
     ).then(function(json) {
-
       if(json.results.length > 0) {
         json.results.map((result) => {
-          let id = v4();
-          const name = result.name;
-          const category = result.category.name;
-          const description = result.description;
-          // console.log(name, category, description, id)
-          dispatch(receiveData(name, category, description, id));
+          if (result.category.name === input) {
+            let id = v4();
+            const name = result.name;
+            const category = result.category.name;
+            const description = result.description.replace(/<[^>]*>/g, '');
+            dispatch(receiveData(name, category, description, id));
+          }
         })
       } else {
         console.log('Error')

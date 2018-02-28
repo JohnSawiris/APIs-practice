@@ -5,6 +5,14 @@ const addExerciseReducer = (state = {}, action) => {
   let newExerciseEntry;
   let newState;
   switch (action.type) {
+    case types.REQUEST_DATA:
+      newExerciseEntry = {
+        isFetching: true
+      };
+      newState = Object.assign({}, state, {
+        [action.id]: newExerciseEntry
+      });
+      return newState;
     case types.RECEIVE_DATA:
       newExerciseEntry = {
         isFetching: false,
@@ -16,6 +24,9 @@ const addExerciseReducer = (state = {}, action) => {
       newState = Object.assign({}, state, {
         [action.id]: newExerciseEntry
       });
+      return newState;
+    case types.RECALL_DATA:
+      newState = {};
       return newState;
     default:
       return state;
