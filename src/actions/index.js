@@ -9,13 +9,13 @@ export const receiveData = (name, category, description, id) => ({
   id
 })
 
-export const requestData = (id) => ({
+export const requestData = () => ({
   type: types.REQUEST_DATA
 });
 
 export function fetchExercises(input) {
   return function (dispatch) {
-    dispatch(requestData());
+    dispatch(requestData())
     return fetch('https://wger.de/api/v2/exerciseinfo/?language=2&status=2&limit=200').then(
       response => response.json(),
       err => console.log('error', err)

@@ -10,7 +10,7 @@ const addExerciseReducer = (state = {}, action) => {
         isFetching: true
       };
       newState = Object.assign({}, state, {
-        [action.id]: newExerciseEntry
+        isFetching: newExerciseEntry
       });
       return newState;
     case types.RECEIVE_DATA:

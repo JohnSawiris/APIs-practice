@@ -9,11 +9,16 @@ const ListExercises = ({dispatch, exercises}) => {
       <div>
         {Object.keys(exercises).map((item) => {
           let exercise = exercises[item];
-          return <ul key={item}>
-          <li>{exercise.name}</li>
-          <li>{exercise.category}</li>
-          <li>{exercise.description}</li>
-          </ul>
+          if(!exercise.isFetching) {
+            return <ul key={item}>
+            <li>{exercise.name}</li>
+            <li>{exercise.category}</li>
+            <li>{exercise.description}</li>
+            </ul>
+          } else {
+            return null;
+          }
+
         })}
       </div>
     );
